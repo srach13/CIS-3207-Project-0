@@ -19,6 +19,7 @@ int main(int argc, char* argv[]) {
                NULL) {   //reads from file in buffer, if it returns NULL then there is no content to read from file
             printf("%s", buffer);                //prints content of file to standard output
         }
+        printf("\n"); //new line to separate different files
         fclose(fp);
     }
     return 0;
