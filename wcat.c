@@ -4,14 +4,14 @@
 
 //main function
 int main(int argc, char* argv[]) {
-    if (argc == 1) {
+    if (argc==1) {
         exit(0);
     }
     char buffer[SIZE];          //buffer string for reading from file
     int i;
-    for (i = 1; i < argc; i++) {                 //iterate
+    for (i=1; i<argc; i++) {                 //iterate
         FILE *fp = fopen(argv[i], "r");     //argv[i] is filename
-        if (fp == NULL) {
+        if (fp==NULL) {
             printf("cannot open file\n");
             exit(0);                        //error if file is NULL
         }
