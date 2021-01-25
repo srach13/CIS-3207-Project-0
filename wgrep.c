@@ -18,4 +18,21 @@ int main(int argc, char*argv[]) {
             }
         }
     }
+    else if(argc>2) {       //number of command line arguments is greater than 2
+        char* search = argv[1]; //search word is argv[1]
+        char buffer[MAXSIZE];     //input buffer to be used by fgets to read from file
+        int i;
+        for(i=2; i<argc; i++){
+            FILE *fp = fopen(argv[i], "r");
+            if(fp == NULL) {     //fopen returns NULL if it can't open file
+                printf("cannot open file\n");
+                exit(1);
+            }
+
+        }
+    }
+    return 0;
+}
+
+    }
 }
