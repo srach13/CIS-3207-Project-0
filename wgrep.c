@@ -20,7 +20,7 @@ int main(int argc, char*argv[]) {
     }
     else if(argc>2) {       //arguments are greater than 2
         char* search = argv[1]; //search word is argv[1]
-        char buffer[MAXSIZE];     //input buffer to be used by fgets to read from file
+        char buffer[MAX_SIZE];     //input buffer to be used by fgets to read from file
         int i;
         for(i=2; i<argc; i++){
             FILE *fp = fopen(argv[i], "r");
@@ -28,7 +28,7 @@ int main(int argc, char*argv[]) {
                 printf("cannot open file\n");
                 exit(1);
             }
-            while (fgets(buffer, MAXSIZE, fp)!=NULL) {  //read file into buffer string or character array
+            while (fgets(buffer, MAX_SIZE, fp)!=NULL) {  //read file into buffer string or character array
                 char *found = strstr(buffer, search);
                 if(found != NULL){      //if returns not null then that means there is a match in searching
                     printf("%s",buffer);  //prints line of file
