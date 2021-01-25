@@ -13,12 +13,12 @@ int main(int argc, char*argv[]) {
             char str[MAX_SIZE]; //input string of defined size MAX_SIZE
             scanf("%s", str);   //read string from standard input
             char *found = strstr(str, search);      //search given search variable in standard input
-            if (found != NULL) {                     //returns NULL if it doesn't find string
+            if (found != NULL) {                    //returns NULL if it doesn't find string
                 printf("%s\n", str);                //if it finds string then it prints the input string
             }
         }
     }
-    else if(argc>2) {       //number of command line arguments is greater than 2
+    else if(argc>2) {       //arguments are greater than 2
         char* search = argv[1]; //search word is argv[1]
         char buffer[MAXSIZE];     //input buffer to be used by fgets to read from file
         int i;
@@ -28,11 +28,15 @@ int main(int argc, char*argv[]) {
                 printf("cannot open file\n");
                 exit(1);
             }
-
+            while (fgets(buffer, MAXSIZE, fp)!=NULL) {  //read file into buffer string or character array
+                char *found = strstr(buffer, search);
+                if(found != NULL){      //if returns not null then that means there is a match in searching
+                    printf("%s",buffer);  //prints line of file
+                }
+            }
+            printf("\n");
+            fclose(fp);
         }
     }
     return 0;
-}
-
-    }
 }
