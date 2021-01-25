@@ -10,14 +10,14 @@ int main(int argc, char* argv[]) {
     char buffer[SIZE];          //buffer string for reading from file
 }
 int i;
-for(i=1; i<argc; i++) {
-    FILE *fp = fopen(argv[i], "r");
+for(i=1; i<argc; i++) {                 //iterate
+    FILE *fp = fopen(argv[i], "r");     //argv[i] is filename
     if(fp==NULL) {
         printf("cannot open file\n");
-        exit(0);
+        exit(0);                        //error if file is NULL
     }
-    while(fgets(buffer, SIZE, fp)!=NULL) {
-        printf("%s",buffer);
+    while(fgets(buffer, SIZE, fp)!=NULL) {   //reads from file in buffer, if it returns NULL then there is no content to read from file
+        printf("%s",buffer);                //prints content of file to standard output
     }
     fclose(fp);
 }
