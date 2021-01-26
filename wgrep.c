@@ -32,7 +32,6 @@ int main(int argc, char* argv[]) {
                     printf("%s",buffer);    //prints line from file
                 }
             }
-            printf("\n");
             fclose(fp);
         }
     }
