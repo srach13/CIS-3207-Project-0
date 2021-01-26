@@ -4,7 +4,7 @@
 #define MAX_SIZE 1024;
 
 int main(int argc, char* argv[]) {
-    char line[MAX_SIZE];
+    char line[1024];
     if(argc < 2) {     //no arguments
         printf("wgrep:searchterm [file...]\n");
         exit(1);
@@ -19,7 +19,7 @@ int main(int argc, char* argv[]) {
         }
     } else if(argc > 2) {   //case where there's more than 2 arguments
         char* searchTerm = argv[1];
-        char buffer[MAX_SIZE];  //input buffer to read from file
+        char buffer[1024];  //input buffer to read from file
         int i;
         for(i=2;i<argc;i++) {
             FILE *fp = fopen(argv[i],"r");  //iterate over arguments
