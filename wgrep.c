@@ -5,26 +5,27 @@
 
 int main(int argc, char* argv[]) {
     char line[MAX_SIZE];
-    if(argc == 1) {     //case where there's 1 argument
+    if(argc < 2) {     //no arguments
+        printf("wgrep:searchterm [file...]\n");
         exit(1);
-    } else if(argc == 2) {  //case with 2 arguments makes argv[1] searchTerm
+    } else if(argc == 2) {  //case where there's 2 arguments
         char* searchTerm = argv[1];
-        while(!feof(stdin)) {   //read input until terminated by user
+        while(!feof(stdin)) {   //reads input until terminated by user
             fgets(line,sizeof(line),stdin);
             line[strlen(line)-1]='\0';
             if(strstr(line,searchTerm)) {
                 printf("%s\n",line);
             }
         }
-    } else if(argc > 2) {   //case where there are more than 2 arguments
+    } else if(argc > 2) {   //case where there's more than 2 arguments
         char* searchTerm = argv[1];
         char buffer[MAX_SIZE];  //input buffer to read from file
         int i;
         for(i=2;i<argc;i++) {
             FILE *fp = fopen(argv[i],"r");  //iterate over arguments
             if(fp==NULL) {      //error message
-                printf("cannot open file\n");
-                exit(1);
+                printf("Cannot open file\n");
+                exit(0);
             }
             while(fgets(buffer,MAX_SIZE,fp)!=NULL) {    //reads file into buffer string
                 char *found = strstr(buffer,searchTerm);
