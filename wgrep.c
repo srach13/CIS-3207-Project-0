@@ -26,6 +26,15 @@ int main(int argc, char* argv[]) {
                 printf("cannot open file\n");
                 exit(1);
             }
+            while(fgets(buffer,MAX_SIZE,fp)!=NULL) {
+                char *found = strstr(buffer,searchTerm);
+                if(found != NULL) {
+                    printf("%s",buffer);
+                }
+            }
+            printf("\n");
+            fclose(fp);
         }
     }
+    return 0;
 }
