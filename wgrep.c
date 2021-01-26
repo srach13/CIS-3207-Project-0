@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#define MAX_SIZE 1024;
 
 int main(int argc, char* argv[]) {
     char line[1024];
@@ -13,6 +14,17 @@ int main(int argc, char* argv[]) {
             line[strlen(line)-1]='\0';
             if(strstr(line,searchTerm)) {
                 printf("%s\n",line);
+            }
+        }
+    } else if(argc > 2) {
+        char* searchTerm = argv[1];
+        char buffer[MAX_SIZE];
+        int i;
+        for(i=2;i<argc;i++) {
+            FILE *fp = fopen(argv[i],"r");
+            if(fp==NULL) {
+                printf("cannot open file\n");
+                exit(1);
             }
         }
     }
