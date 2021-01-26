@@ -6,7 +6,7 @@ int main(int argc, char* argv[]) {
     if (argc == 1) {    //no files specified error
         exit(0);
     }
-    char buffer[SIZE];  //buffer string for reading from file
+    char buffer[MAX_SIZE];  //buffer string for reading from file
     int i;
     for (i=1; i<argc; i++) {                       //for loop to iterate
         FILE *fp = fopen(argv[i], "r");
@@ -14,7 +14,7 @@ int main(int argc, char* argv[]) {
             printf("Cannot open file\n");
             exit(0);
         }
-        while (fgets(buffer, SIZE, fp) != NULL) { //reads from file in buffer
+        while (fgets(buffer, MAX_SIZE, fp) != NULL) { //reads from file in buffer
             printf("%s", buffer);                //prints content of file to standard output
         }
         fclose(fp);
