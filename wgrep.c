@@ -5,7 +5,7 @@
 int main(int argc, char* argv[]) {
     char line[1024];
     if(argc < 2) {     //no arguments
-        printf("wgrep:searchterm [file...]\n");
+        printf("wgrep: searchterm [file...]\n");
         exit(1);
     } else if(argc == 2) {  //case where there's 2 arguments
         char* searchTerm = argv[1];
@@ -23,8 +23,8 @@ int main(int argc, char* argv[]) {
         for(i=2;i<argc;i++) {
             FILE *fp = fopen(argv[i],"r");  //iterate over arguments
             if(fp==NULL) {      //error message
-                printf("Cannot open file\n");
-                exit(0);
+                printf("wgrep: cannot open file\n");
+                exit(1);
             }
             while(fgets(buffer,1024,fp)!=NULL) {    //reads file into buffer string
                 char *found = strstr(buffer,searchTerm);

@@ -4,15 +4,15 @@
 
 int main(int argc, char* argv[]) {
     if (argc == 1) {    //no files specified error
-        exit(0);
+        exit(1);
     }
     char buffer[MAX_SIZE];  //buffer string for reading from file
     int i;
     for (i=1; i<argc; i++) {                       //for loop to iterate
         FILE *fp = fopen(argv[i], "r");
         if (fp==NULL) {                            //error message for NULL file
-            printf("Cannot open file\n");
-            exit(0);
+            printf("wcat: cannot open file\n");
+            exit(1);
         }
         while (fgets(buffer, MAX_SIZE, fp) != NULL) { //reads from file in buffer
             printf("%s", buffer);                //prints content of file to standard output
