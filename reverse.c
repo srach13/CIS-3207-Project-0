@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-char *reverse(char *line) {     //takes in a string and returns the string in reverse
+char *reverse(char *line) {     //passes in a string and returns the string in reverse
     char *reverse_string = (char *)malloc(sizeof(char *));  //make a new string and get length using malloc
     if (reverse_string == NULL) { // malloc fails error
         fprintf(stderr, "malloc failed \n");
