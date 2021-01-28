@@ -27,3 +27,37 @@ char *reverse(char *line) {     //takes in a string and returns the string in re
     reverse_string[reverse_string_index] = '\0';
     return reverse_string;
 }
+
+int main(int argv, char **argc) {
+    if (argv > 3) {     //error: more than 3 arguments
+        fprintf(stdout, "usage: reverse <input> <output>");
+        exit(1);
+    }
+    else if (argv == 3) {
+        if (strcmp(argc[1], argc[2]) == 0) {    //check if input file and output file are same
+            fprintf(stderr, "%s", "Input and output file must differ\n");
+            exit(1);
+        }
+
+        FILE *inputFile;
+        inputFile = fopen(argc[1], "r");
+        FILE *outputFile;
+        outputFile = fopen(argc[2], "w");
+        if (inputFile == NULL) {    //error opening file
+            fprintf(stderr, "error: cannot open file \'%s\' \n", argc[1]);
+            exit(1);
+        }
+        if (outputFile == NULL) {  //error opening file
+            fprintf(stderr, "error: cannot open file \'%s\' \n", argc[2]);
+            exit(1);
+        }
+
+        char *line = NULL;  //reads from input file
+        size_t len = 0;
+        ssize_t line_size = 0;
+        while ((line_size = getline(&line, &len, inputFile)) != -1) {
+            line[line_size - 1] = '\0';     //removes the newline character
+            char *reverse_str = reverse(line);   //calls reverse string function
+            fprintf(outputFile, "%s\n", reverse_str);   //writes the reversed line to output file
+        }
+    }
