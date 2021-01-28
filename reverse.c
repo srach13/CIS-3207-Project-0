@@ -61,3 +61,33 @@ int main(int argv, char **argc) {
             fprintf(outputFile, "%s\n", reverse_str);   //writes the reversed line to output file
         }
     }
+
+    else if (argv == 2) {    //2 arguments are passed
+        FILE *inputFile;
+        inputFile = fopen(argc[1], "r");
+        if (inputFile == NULL) {    //error opening file
+            fprintf(stderr, "error: cannot open file \'%s\' \n", argc[1]);
+            exit(1);
+        }
+
+        char *line = NULL;
+        size_t len = 0;
+        ssize_t line_size = 0;
+        while ((line_size = getline(&line, &len, inputFile)) != -1) {     //reading input file
+            line[line_size - 1] = '\0';     //remove newline character from line
+            fprintf(stdout, "%s\n", reverse(line));  //print to standard output the reverse of the line read
+        }
+    }
+
+    else if (argv == 1) {    //1 argument is passed
+        fprintf(stdout, "Enter a string:");     //gets input string from standard input
+        char *str = (char *)malloc(sizeof(char *)); //declares string to store user input using malloc to allocate space
+        if (str == NULL) {    //error: malloc failed
+            fprintf(stderr, "malloc failed \n");
+            exit(1);
+        }
+        gets(str);
+        fprintf(stdout, "%s\n", reverse(str));
+    }
+    return 0;
+}
